@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<!--<h1>Jobs</h1>-->
+
+<!--<table>-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th>Parent_id</th>-->
+<!--    <th>Sitter_id</th>-->
+<!--    <th colspan="3"></th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+
+<!--  <tbody>-->
+  <%# @jobs.each do |job| %>
+<!--    <tr>-->
+<!--      <td><%#= job.parent_id %></td>-->
+<!--      <td><%#= job.sitter_id %></td>-->
+<!--      <td><%#= link_to 'Show', job %></td>-->
+<!--      <td><%#= link_to 'Edit', edit_job_path(job) %></td>-->
+<!--      <td><%#= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+<!--    </tr>-->
+  <%# end %>
+<!--  </tbody>-->
+<!--</table>-->
+<!--<br>-->
+
+<h1>All Appointments</h1>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>Job Id</th>
+    <th>Client name</th>
+    <th>BabySitter name</th>
+    <th>years_of_experience</th>
+    <th>Client Location</th>
+    <th>Assigned By</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @jobs.each do |job| %>
+    <tr>
+      <td><%= job.id %></td>
+      <td><%= Parent.find(job.parent_id).name%></td>
+      <td><%= Sitter.find(job.sitter_id).name %></td>
+      <td><%= Sitter.find(job.sitter_id).years_experience%></td>
+      <td><%= Parent.find(job.parent_id).location %></td>
+      <td><%= job.assigned_by%></td>
+      <td><%= link_to 'Edit', edit_job_path(job) %></td>
+      <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'New appointment', new_job_path %>
+<br>
+<%= link_to 'back', root_path %>

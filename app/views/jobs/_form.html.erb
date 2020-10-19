@@ -1,0 +1,34 @@
+<%= form_with(model: job, local: true) do |form| %>
+  <% if job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+        <% job.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+    <%= form.label 'Parent Name: ' %>
+    <%#= form.select :,sitter.each do |sit| %>
+      <%= form.select :parent_id, parent.all.collect { |p| [ p.name, p.id ] }%>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Sitter Name:' %>
+    <%#= form.text_field :sitter_id %>
+    <%= form.select :sitter_id, sitter.all.collect { |s| [ s.name, s.id ] }%>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Assigned By:' %>
+    <%= form.text_field :assigned_by %>
+    </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
